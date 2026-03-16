@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan de Emergencia – Primer Piso</title>
+  <meta name="theme-color" content="#b91c1c" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icon-512.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">INACAP CALAMA</div>
+      <h1>Plan de Emergencia</h1>
+      <div class="sub">Sede Principal – Primer Piso</div>
+    </div>
+    <button id="menuBtn" class="menu-btn" aria-label="Menú oculto">☰</button>
+  </header>
+
+  <div id="alertBanner" class="alert-banner" hidden>
+    <div class="alert-copy">
+      <div id="alertTitle" class="alert-title">⚠ Alerta activa</div>
+      <div id="alertMessage" class="alert-message"></div>
+    </div>
+    <div class="alert-actions">
+      <button id="alertViewBtn" class="alert-btn">Ver indicaciones</button>
+      <button id="alertCloseBtn" class="alert-btn ghost">Cerrar</button>
+    </div>
+  </div>
+
+  <main class="app-shell">
+    <section id="homeScreen" class="screen active">
+      <div class="card hero">
+        <div class="loc">📍 Ubicación: Sede Principal – Primer Piso</div>
+        <p class="lead">En caso de emergencia, revisa la información de este piso y sigue las rutas señalizadas.</p>
+
+        <div class="plan-card">
+          <div class="plan-head">
+            <div>
+              <div class="plan-title">Plano del piso</div>
+              <div class="plan-sub">Con orientación directa para evacuación</div>
+            </div>
+          </div>
+
+          <div class="plan-wrap">
+            <img src="./assets/primer_piso.png" alt="Plano primer piso" class="plan-img" />
+            <div class="overlay-label you-are-here">📍 USTED ESTÁ AQUÍ</div>
+            <div class="overlay-label out-bottom">⬇ Av. Granaderos</div>
+            <div class="overlay-label out-right">➡ Calle Finlandia</div>
+          </div>
+
+          <div class="meeting-point">
+            📍 Punto de encuentro: Av. Argentina / Calle Finlandia
+          </div>
+        </div>
+
+        <button id="goEmergencies" class="primary big">🚨 VER EMERGENCIAS</button>
+      </div>
+    </section>
+
+    <section id="emergencyScreen" class="screen">
+      <div class="card">
+        <button id="backHome" class="back">← Volver</button>
+        <h2>¿Qué emergencia está ocurriendo?</h2>
+        <p class="muted">Selecciona una emergencia para ver las instrucciones directas.</p>
+
+        <div class="grid">
+          <button class="em-btn" data-key="incendio">🔥<span>Incendio</span></button>
+          <button class="em-btn" data-key="sismo">🌎<span>Sismo</span></button>
+          <button class="em-btn" data-key="medica">🚑<span>Emergencia médica</span></button>
+          <button class="em-btn" data-key="violencia">🔫<span>Violencia extrema</span></button>
+          <button class="em-btn" data-key="quimica">☣<span>Emergencia química</span></button>
+          <button class="em-btn" data-key="electrica">⚡<span>Emergencia eléctrica</span></button>
+          <button class="em-btn full" data-key="bomba">💣<span>Amenaza de bomba</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="detailScreen" class="screen">
+      <div class="card">
+        <button id="backEmergencies" class="back">← Volver a emergencias</button>
+        <div id="detailHeader" class="detail-header"></div>
+        <div class="section-title">Qué hacer</div>
+        <ol id="detailSteps" class="steps"></ol>
+
+        <div class="evac-box">
+          <div class="section-title">Salidas de evacuación</div>
+          <div class="evac-split">
+            <div>⬇ Sector inferior → <strong>Av. Granaderos</strong></div>
+            <div>➡ Sector derecho → <strong>Calle Finlandia</strong></div>
+          </div>
+        </div>
+
+        <div class="plan-card compact">
+          <div class="plan-wrap">
+            <img src="./assets/primer_piso.png" alt="Plano primer piso" class="plan-img" />
+            <div class="overlay-label you-are-here">📍 USTED ESTÁ AQUÍ</div>
+            <div class="overlay-label out-bottom">⬇ Av. Granaderos</div>
+            <div class="overlay-label out-right">➡ Calle Finlandia</div>
+          </div>
+          <div class="meeting-point">
+            📍 Punto de encuentro: Av. Argentina / Calle Finlandia
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside id="hiddenPanel" class="hidden-panel" hidden>
+    <div class="panel-card">
+      <div class="panel-head">
+        <h3>Panel oculto</h3>
+        <button id="closePanel" class="menu-btn">✕</button>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-section-title">Reporte</div>
+        <button id="openReportBtn" class="panel-item">Reportar emergencia</button>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-section-title">Planos</div>
+        <div class="panel-list">
+          <button class="panel-item plan-btn" data-img="./assets/planos/sede_principal_piso1.png">Primer piso</button>
+          <button class="panel-item plan-btn" data-img="./assets/planos/sede_principal_piso2.png">Segundo piso</button>
+          <button class="panel-item plan-btn" data-img="./assets/planos/sede_principal_piso3.png">Tercer piso</button>
+          <button class="panel-item plan-btn" data-img="./assets/planos/sede_principal_subterraneo.png">Subterráneo</button>
+          <button class="panel-item plan-btn" data-img="./assets/mapa_emplazamiento.png">Mapa general</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-section-title">Teléfonos de emergencia</div>
+        <div class="phone-list">
+          <div class="phone-item"><strong>SAMU</strong> 131</div>
+          <div class="phone-item"><strong>Bomberos</strong> 132</div>
+          <div class="phone-item"><strong>Carabineros</strong> 133</div>
+          <div class="phone-item"><strong>Rest911</strong> +56 442 469 911</div>
+                  </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-section-title">Plan de Emergencia</div>
+        <button id="openDocumentBtn" class="panel-item">Abrir Plan de Emergencia completo (PDF)</button>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-section-title">Control de alerta</div>
+        <button id="openAdminBtn" class="panel-item">Activar / desactivar emergencia</button>
+      </div>
+
+      <p class="muted small">Panel técnico oculto. Puedes seguir ajustándolo.</p>
+    </div>
+  </aside>
+
+  <div id="reportModal" class="modal" hidden>
+    <div class="modal-card">
+      <div class="panel-head">
+        <h3>Reportar emergencia</h3>
+        <button id="closeReportBtn" class="menu-btn">✕</button>
+      </div>
+      <form id="reportForm" class="report-form">
+        <label>Tipo de emergencia
+          <select name="tipo" required>
+            <option value="">Selecciona…</option>
+            <option>Incendio</option>
+            <option>Sismo</option>
+            <option>Emergencia médica</option>
+            <option>Violencia extrema</option>
+            <option>Emergencia química</option>
+            <option>Emergencia eléctrica</option>
+            <option>Amenaza de bomba</option>
+            <option>Fuga de gas</option>
+            <option>Otra</option>
+          </select>
+        </label>
+        <label>Ubicación
+          <input name="ubicacion" value="Sede Principal – Primer Piso" required />
+        </label>
+        <label>Detalle
+          <textarea name="detalle" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="primary">Enviar reporte</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="imageModal" class="modal" hidden>
+    <div class="modal-card large">
+      <div class="panel-head">
+        <h3 id="imageModalTitle">Plano</h3>
+        <button id="closeImageBtn" class="menu-btn">✕</button>
+      </div>
+      <img id="imageModalImg" class="modal-image" src="" alt="Plano" />
+    </div>
+  </div>
+
+
+  <div id="adminModal" class="modal" hidden>
+    <div class="modal-card">
+      <div class="panel-head">
+        <h3>Control de emergencia</h3>
+        <button id="closeAdminBtn" class="menu-btn">✕</button>
+      </div>
+      <form id="adminForm" class="report-form">
+        <label>Usuario autorizado
+          <select name="user" required>
+            <option value="">Selecciona…</option>
+            <option value="prevencion">Prevención</option>
+            <option value="jefe_emergencia">Jefe de emergencia</option>
+            <option value="encargado_emergencia">Encargado de emergencia</option>
+          </select>
+        </label>
+        <label>Clave
+          <input name="password" type="password" required />
+        </label>
+        <label>Estado
+          <select name="state" required>
+            <option value="on">Activar emergencia</option>
+            <option value="off">Desactivar emergencia</option>
+          </select>
+        </label>
+        <label>Título
+          <input name="title" value="Evacuación inmediata" />
+        </label>
+        <label>Mensaje
+          <textarea name="message" rows="3">Se solicita evacuar el primer piso y revisar las indicaciones.</textarea>
+        </label>
+        <label>Tipo de emergencia
+          <select name="emergencyKey">
+            <option value="">Sin abrir emergencia específica</option>
+            <option value="incendio">Incendio</option>
+            <option value="sismo">Sismo</option>
+            <option value="medica">Emergencia médica</option>
+            <option value="violencia">Violencia extrema</option>
+            <option value="quimica">Emergencia química</option>
+            <option value="electrica">Emergencia eléctrica</option>
+            <option value="bomba">Amenaza de bomba</option>
+            <option value="gas">Fuga de gas</option>
+            <option value="vecina">Emergencia vecina</option>
+          </select>
+        </label>
+        <button type="submit" class="primary">Guardar alerta</button>
+      </form>
+      <p class="muted small">Esta versión usa clave local dentro de la app. Sirve como control básico, no como seguridad robusta.</p>
+    </div>
+  </div>
+
+
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

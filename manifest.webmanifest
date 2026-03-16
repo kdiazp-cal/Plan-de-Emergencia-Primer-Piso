@@ -1,0 +1,15 @@
+{
+  "name": "Plan de Emergencia - Primer Piso",
+  "short_name": "Emergencia Piso 1",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#b91c1c",
+  "icons": [
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
